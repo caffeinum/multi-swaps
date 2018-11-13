@@ -1,0 +1,29 @@
+{
+  "name": "multi-atomic-swaps",
+  "version": "0.1.0",
+  "description": "Multiple destination ETH atomic swaps",
+  "main": ".",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caffeinum/multi-swaps.git"
+  },
+  "keywords": [
+    "atomic",
+    "swap"
+  ],
+  "author": "Aleksey Bykhun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/caffeinum/multi-swaps/issues"
+  },
+  "homepage": "https://github.com/caffeinum/multi-swaps#readme",
+  "dependencies": {
+    "truffle-hdwallet-provider": "0.0.6"
+  }
+}
