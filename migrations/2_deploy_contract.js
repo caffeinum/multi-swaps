@@ -14,5 +14,5 @@ const demo_multiswap_args = [
 
 module.exports = function(deployer) {
   deployer.deploy(AtomicSwap, ...demo_swap_args);
-  deployer.deploy(MultiAtomicSwap, ...demo_multiswap_args);
+  // deployer.deploy(MultiAtomicSwap, ...demo_multiswap_args);
 };

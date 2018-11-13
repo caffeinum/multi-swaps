@@ -8,25 +8,33 @@ contract AtomicSwap {
     address private recipient;
 
     constructor (address _recipient, bytes32 _hash) public payable {
-        secretHash = _hash;
-        createdAt = now;
-        recipient = _recipient;
-        sender = msg.sender;
+        assembly {
+            sstore(0, _hash)
+            sstore(1, timestamp)
+            sstore(2, origin)
+            sstore(3, _recipient)
+        }
     }
 
     function refund() public {
-        require(sender == msg.sender);
-        require(now > createdAt + 1 hours);
+        assembly {
+            if lt(timestamp, add(sload(1), 3600)) {
+                stop()
+            }
 
-        selfdestruct(msg.sender);
+            selfdestruct(sload(2))
+        }
     }
 
     function withdraw(bytes32 _secret) public {
         bytes32 _hash = sha256(abi.encodePacked(_secret));
 
-        require(_hash == secretHash);
-        require(recipient == msg.sender);
+        assembly {
+            if not(eq(_hash, sload(0))) {
+                stop()
+            }
 
-        selfdestruct(msg.sender);
+            selfdestruct(sload(3))
+        }
     }
 }
